@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sarkin Wanka Fashion Design | Excellence en Couture</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Montserrat:wght@300;400;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">
+                <img src="img/LOGO DE L'ATTELIE.jpg" alt="Sarkin Wanka Logo">
+                <span>Sarkin Wanka</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Accueil</a></li>
+                <li><a href="galerie.html">Galerie</a></li>
+                <li><a href="galerie.html#videos">Vidéos</a></li>
+                <li><a href="#propos">À Propos</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+            </ul>
+            <button class="burger" aria-label="Menu" aria-expanded="false">
+                <span class="line1"></span>
+                <span class="line2"></span>
+                <span class="line3"></span>
+            </button>
+        </nav>
+    </header>
+
+    <main>
+        <section id="accueil" class="hero">
+            <div class="hero-content">
+                <h1 class="reveal">Sarkin Wanka Fashion Design</h1>
+                <p class="reveal">L'art de la couture traditionnelle et moderne redéfini.</p>
+                <a href="galerie.html" class="btn reveal">Découvrir la collection</a>
+            </div>
+        </section>
+
+        <section id="propos" class="about-section">
+            <div class="container about-flex">
+                <div class="about-text reveal">
+                    <h2>À Propos de SARKIN WANKA</h2>
+                    <p>Fondée par la passion de l'excellence et du détail, Sarkin Wanka Fashion Design est bien plus
+                        qu'un atelier de couture. C'est un lieu où le tissu rencontre l'imagination pour créer des
+                        pièces uniques qui racontent une histoire.</p>
+                    <p>Notre mission est de sublimer votre élégance à travers des coupes parfaites et des finitions
+                        soignées.</p>
+                </div>
+                <div class="about-image reveal">
+                    <img src="img/ATTELIER.jpg" alt="Atelier Couture">
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="contact">
+        <div class="container footer-content">
+            <div class="footer-info">
+                <h3>Sarkin Wanka Fashion Design</h3>
+                <p>Excellence & Élégance</p>
+            </div>
+            <div class="footer-contact">
+                <p>Contactez-nous pour vos commandes sur mesure.</p>
+                <p><strong>TELEPHONE :</strong> +227 92 62 27 64 / +227 86 54 86 79</p>
+                <div class="social-icons">
+                    <a href="https://wa.me/22792622764" target="_blank" class="wa-btn" style="margin-top: 10px;">Nous
+                        contacter via WhatsApp</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Sarkin Wanka Fashion Design. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <!-- Lightbox for Gallery (Needed only if linked from script, but main script might look for it. Kept safely unseen) -->
+    <div id="lightbox" class="lightbox">
+        <span class="close">&times;</span>
+        <img class="lightbox-content" id="lightboxImg">
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
