@@ -1,94 +1,155 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sarkin Wanka Fashion Design | Excellence en Couture</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Sarkin Wanka Fashion Design | Couture sur mesure à Niamey</title>
+    <meta name="description" content="Atelier de couture Sarkin Wanka à Niamey : tenues sur mesure pour hommes et femmes, tissus, finitions soignées. Commandez via WhatsApp.">
+    <meta name="theme-color" content="#0b0b0c">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Sarkin Wanka Fashion Design | Couture sur mesure à Niamey">
+    <meta property="og:description" content="Atelier de couture Sarkin Wanka à Niamey : tenues sur mesure pour hommes et femmes, tissus, finitions soignées. Commandez via WhatsApp.">
+    <meta property="og:image" content="img/HOM 1.jpg">
+    <link rel="icon" type="image/jpeg" href="img/LOGO DE L'ATTELIE.jpg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Montserrat:wght@300;400;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
-
-<body>
+<body data-page="home">
+    <a class="skip-link" href="#main">Aller au contenu</a>
     <header>
-        <nav class="container">
-            <div class="logo">
-                <img src="img/LOGO DE L'ATTELIE.jpg" alt="Sarkin Wanka Logo">
+        <nav class="container" aria-label="Navigation principale">
+            <a class="logo" href="index.html">
+                <img src="img/LOGO DE L'ATTELIE.jpg" alt="Logo Sarkin Wanka" width="46" height="46">
                 <span>Sarkin Wanka</span>
-            </div>
-            <ul class="nav-links">
-                <li><a href="index.html" class="active">Accueil</a></li>
-                <li><a href="galerie.html">Galerie</a></li>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html" data-n="home">Accueil</a></li>
+                <li><a href="galerie.html" data-n="galerie">Galerie</a></li>
                 <li><a href="galerie.html#videos">Vidéos</a></li>
-                <li><a href="#propos">À Propos</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="index.html#propos">À propos</a></li>
+                <li><a href="contact.html" data-n="contact">Contact</a></li>
+                <li><a href="faq.html" data-n="faq">FAQ</a></li>
+                <li><a class="nav-cta" href="https://wa.me/22792622764" target="_blank" rel="noopener">Commander</a></li>
             </ul>
-            <button class="burger" aria-label="Menu" aria-expanded="false">
-                <span class="line1"></span>
-                <span class="line2"></span>
-                <span class="line3"></span>
+            <button class="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="navLinks">
+                <span class="line1"></span><span class="line2"></span><span class="line3"></span>
             </button>
         </nav>
     </header>
+    <main id="main">
 
-    <main>
-        <section id="accueil" class="hero">
-            <div class="hero-content">
-                <h1 class="reveal">Sarkin Wanka Fashion Design</h1>
-                <p class="reveal">L'art de la couture traditionnelle et moderne redéfini.</p>
-                <a href="galerie.html" class="btn reveal">Découvrir la collection</a>
+        <section class="hero">
+            <div class="container hero-grid">
+                <div>
+                    <span class="eyebrow">Couture sur mesure · Niamey</span>
+                    <h1>L'élégance <em>taillée</em> à votre mesure</h1>
+                    <p class="lead">Sarkin Wanka Fashion Design sublime votre allure avec des coupes parfaites et des finitions soignées, de la tenue traditionnelle à la pièce moderne.</p>
+                    <div class="hero-actions">
+                        <a class="btn" href="galerie.html">Découvrir la collection</a>
+                        <a class="btn btn-wa" href="https://wa.me/22792622764" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2a9.9 9.9 0 0 0-8.5 14.9L2 22l5.25-1.38A9.9 9.9 0 1 0 12.04 2Zm5.8 14.07c-.25.7-1.45 1.34-2 1.4-.52.06-1.17.09-1.88-.12a17 17 0 0 1-1.7-.63c-3-1.3-4.95-4.32-5.1-4.52-.15-.2-1.2-1.6-1.2-3.05s.76-2.16 1.03-2.46c.27-.3.6-.37.8-.37h.57c.18 0 .43-.07.67.51.25.6.85 2.06.92 2.2.08.15.13.33.03.52-.1.2-.15.32-.3.5-.15.17-.31.38-.45.51-.15.15-.3.31-.13.6.17.3.78 1.28 1.67 2.07 1.15 1.02 2.12 1.34 2.42 1.49.3.15.47.12.65-.07.17-.2.75-.87.95-1.17.2-.3.4-.25.67-.15.27.1 1.73.82 2.03.97.3.15.5.22.57.35.08.12.08.72-.17 1.42Z"/></svg>Commander</a>
+                    </div>
+                    <div class="hero-points">
+                        <div><strong>1 à 2 sem.</strong>délai moyen</div>
+                        <div><strong>Niamey</strong>livraison &amp; sous-région</div>
+                        <div><strong>Votre tissu</strong>accepté avec plaisir</div>
+                    </div>
+                </div>
+                <div class="hero-collage" aria-hidden="true">
+                    <figure class="c1"><img src="img/HOM 1.jpg" alt=""></figure>
+                    <figure class="c2"><img src="img/HOM 8.jpg" alt=""></figure>
+                    <figure class="c3"><img src="img/F 1.jpg" alt=""></figure>
+                </div>
             </div>
         </section>
 
-        <section id="propos" class="about-section">
-            <div class="container about-flex">
+        <section class="section alt" id="collections">
+            <div class="container">
+                <div class="section-head reveal">
+                    <span class="eyebrow">Nos univers</span>
+                    <h2 class="section-title">Explorez la <em>collection</em></h2>
+                    <p>Des tenues pour homme et femme, des modèles prestige, des tissus de qualité et des jeans.</p>
+                </div>
+                <div class="collections">
+                    <a class="collection reveal" href="galerie.html#homme"><img src="img/HOM 28.jpg" alt="Homme" loading="lazy"><div class="label"><span>Tenues</span><h3>Homme</h3></div></a>
+                    <a class="collection reveal" href="galerie.html#femme"><img src="img/F 2.jpg" alt="Femme" loading="lazy"><div class="label"><span>Robes &amp; ensembles</span><h3>Femme</h3></div></a>
+                    <a class="collection reveal" href="galerie.html#prestige"><img src="img/MODEL 4.jpg" alt="Prestige" loading="lazy"><div class="label"><span>Grands boubous</span><h3>Prestige</h3></div></a>
+                    <a class="collection reveal" href="galerie.html#tissus"><img src="img/TISSU POUR HOMME 19.jpg" alt="Tissus" loading="lazy"><div class="label"><span>Sélection</span><h3>Tissus</h3></div></a>
+                    <a class="collection reveal" href="galerie.html#jeans"><img src="img/PENTALON POUR HOMME GN2.jpg" alt="Jeans &amp; pantalons" loading="lazy"><div class="label"><span>Streetwear</span><h3>Jeans &amp; pantalons</h3></div></a>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="propos">
+            <div class="container about-grid">
+                <div class="about-image reveal"><img src="img/ATTELIER.jpg" alt="L'atelier de couture Sarkin Wanka" loading="lazy"></div>
                 <div class="about-text reveal">
-                    <h2>À Propos de SARKIN WANKA</h2>
-                    <p>Fondée par la passion de l'excellence et du détail, Sarkin Wanka Fashion Design est bien plus
-                        qu'un atelier de couture. C'est un lieu où le tissu rencontre l'imagination pour créer des
-                        pièces uniques qui racontent une histoire.</p>
-                    <p>Notre mission est de sublimer votre élégance à travers des coupes parfaites et des finitions
-                        soignées.</p>
+                    <span class="eyebrow">À propos</span>
+                    <h2>Un atelier où le tissu rencontre <em>l'imagination</em></h2>
+                    <p>Fondée par la passion de l'excellence et du détail, Sarkin Wanka Fashion Design est bien plus qu'un atelier de couture : un lieu où naissent des pièces uniques qui racontent une histoire.</p>
+                    <p>Notre mission est de sublimer votre élégance à travers des coupes parfaites et des finitions soignées.</p>
+                    <ul class="checks">
+                        <li>Confection 100 % sur mesure</li>
+                        <li>Travail sur vos tissus ou conseil sur le métrage</li>
+                        <li>Mesures à distance par appel vidéo possibles</li>
+                    </ul>
                 </div>
-                <div class="about-image reveal">
-                    <img src="img/ATTELIER.jpg" alt="Atelier Couture">
+            </div>
+        </section>
+
+        <section class="section alt">
+            <div class="container">
+                <div class="section-head reveal">
+                    <span class="eyebrow">Comment ça marche</span>
+                    <h2 class="section-title">Votre tenue en <em>4 étapes</em></h2>
                 </div>
+                <div class="steps">
+                    <div class="step reveal"><h3>Choisissez</h3><p>Parcourez la galerie et choisissez un modèle, ou apportez votre idée.</p></div>
+                    <div class="step reveal"><h3>Mesures</h3><p>Prises à l'atelier ou à distance avec notre guide ou un appel vidéo.</p></div>
+                    <div class="step reveal"><h3>Confection</h3><p>Coupe et finitions soignées, en général sous 1 à 2 semaines.</p></div>
+                    <div class="step reveal"><h3>Livraison</h3><p>Récupérez à l'atelier ou recevez à Niamey et dans la sous-région.</p></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-band">
+            <div class="container reveal">
+                <h2>Prêt à créer votre prochaine tenue ?</h2>
+                <p>Écrivez-nous sur WhatsApp, nous vous répondons avec plaisir.</p>
+                <a class="btn btn-wa" href="https://wa.me/22792622764" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2a9.9 9.9 0 0 0-8.5 14.9L2 22l5.25-1.38A9.9 9.9 0 1 0 12.04 2Zm5.8 14.07c-.25.7-1.45 1.34-2 1.4-.52.06-1.17.09-1.88-.12a17 17 0 0 1-1.7-.63c-3-1.3-4.95-4.32-5.1-4.52-.15-.2-1.2-1.6-1.2-3.05s.76-2.16 1.03-2.46c.27-.3.6-.37.8-.37h.57c.18 0 .43-.07.67.51.25.6.85 2.06.92 2.2.08.15.13.33.03.52-.1.2-.15.32-.3.5-.15.17-.31.38-.45.51-.15.15-.3.31-.13.6.17.3.78 1.28 1.67 2.07 1.15 1.02 2.12 1.34 2.42 1.49.3.15.47.12.65-.07.17-.2.75-.87.95-1.17.2-.3.4-.25.67-.15.27.1 1.73.82 2.03.97.3.15.5.22.57.35.08.12.08.72-.17 1.42Z"/></svg>Discuter sur WhatsApp</a>
             </div>
         </section>
     </main>
-
-    <footer id="contact">
+    <footer>
         <div class="container footer-content">
             <div class="footer-info">
                 <h3>Sarkin Wanka Fashion Design</h3>
-                <p>Excellence & Élégance</p>
+                <p>Excellence &amp; élégance. Couture sur mesure pour hommes et femmes à Niamey.</p>
             </div>
-            <div class="footer-contact">
-                <p>Contactez-nous pour vos commandes sur mesure.</p>
-                <p><strong>TELEPHONE :</strong> +227 92 62 27 64 / +227 86 54 86 79</p>
-                <div class="social-icons">
-                    <a href="https://wa.me/22792622764" target="_blank" class="wa-btn" style="margin-top: 10px;">Nous
-                        contacter via WhatsApp</a>
-                </div>
+            <div>
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="galerie.html">Galerie</a></li>
+                    <li><a href="galerie.html#videos">Vidéos</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="tel:+22792622764">+227 92 62 27 64</a></li>
+                    <li><a href="tel:+22786548679">+227 86 54 86 79</a></li>
+                    <li>Niamey, Niger</li>
+                </ul>
             </div>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2024 Sarkin Wanka Fashion Design. Tous droits réservés.</p>
+        <div class="container footer-bottom">
+            <p>&copy; <span id="year">2026</span> Sarkin Wanka Fashion Design. Tous droits réservés.</p>
         </div>
     </footer>
-
-    <!-- Lightbox for Gallery (Needed only if linked from script, but main script might look for it. Kept safely unseen) -->
-    <div id="lightbox" class="lightbox">
-        <span class="close">&times;</span>
-        <img class="lightbox-content" id="lightboxImg">
-    </div>
-
+    <a class="wa-float" href="https://wa.me/22792622764" target="_blank" rel="noopener" aria-label="Discuter sur WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2a9.9 9.9 0 0 0-8.5 14.9L2 22l5.25-1.38A9.9 9.9 0 1 0 12.04 2Zm5.8 14.07c-.25.7-1.45 1.34-2 1.4-.52.06-1.17.09-1.88-.12a17 17 0 0 1-1.7-.63c-3-1.3-4.95-4.32-5.1-4.52-.15-.2-1.2-1.6-1.2-3.05s.76-2.16 1.03-2.46c.27-.3.6-.37.8-.37h.57c.18 0 .43-.07.67.51.25.6.85 2.06.92 2.2.08.15.13.33.03.52-.1.2-.15.32-.3.5-.15.17-.31.38-.45.51-.15.15-.3.31-.13.6.17.3.78 1.28 1.67 2.07 1.15 1.02 2.12 1.34 2.42 1.49.3.15.47.12.65-.07.17-.2.75-.87.95-1.17.2-.3.4-.25.67-.15.27.1 1.73.82 2.03.97.3.15.5.22.57.35.08.12.08.72-.17 1.42Z"/></svg></a>
     <script src="script.js"></script>
 </body>
-
 </html>

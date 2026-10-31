@@ -1,106 +1,116 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sarkin Wanka | Galerie</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Galerie | Sarkin Wanka Fashion Design</title>
+    <meta name="description" content="Découvrez les créations de Sarkin Wanka : tenues homme et femme, boubous prestige, tissus, jeans et pantalons. Commandez en un clic sur WhatsApp.">
+    <meta name="theme-color" content="#0b0b0c">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Galerie | Sarkin Wanka Fashion Design">
+    <meta property="og:description" content="Découvrez les créations de Sarkin Wanka : tenues homme et femme, boubous prestige, tissus, jeans et pantalons. Commandez en un clic sur WhatsApp.">
+    <meta property="og:image" content="img/HOM 1.jpg">
+    <link rel="icon" type="image/jpeg" href="img/LOGO DE L'ATTELIE.jpg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Montserrat:wght@300;400;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
-
-<body>
+<body data-page="galerie">
+    <a class="skip-link" href="#main">Aller au contenu</a>
     <header>
-        <nav class="container">
-            <div class="logo">
-                <img src="img/LOGO DE L'ATTELIE.jpg" alt="Sarkin Wanka Logo">
+        <nav class="container" aria-label="Navigation principale">
+            <a class="logo" href="index.html">
+                <img src="img/LOGO DE L'ATTELIE.jpg" alt="Logo Sarkin Wanka" width="46" height="46">
                 <span>Sarkin Wanka</span>
-            </div>
-            <ul class="nav-links">
-                <li><a href="index.html">Accueil</a></li>
-                <li><a href="galerie.html" class="active">Galerie</a></li>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html" data-n="home">Accueil</a></li>
+                <li><a href="galerie.html" data-n="galerie">Galerie</a></li>
                 <li><a href="galerie.html#videos">Vidéos</a></li>
-                <li><a href="index.html#propos">À Propos</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="index.html#propos">À propos</a></li>
+                <li><a href="contact.html" data-n="contact">Contact</a></li>
+                <li><a href="faq.html" data-n="faq">FAQ</a></li>
+                <li><a class="nav-cta" href="https://wa.me/22792622764" target="_blank" rel="noopener">Commander</a></li>
             </ul>
-            <button class="burger" aria-label="Menu" aria-expanded="false">
-                <span class="line1"></span>
-                <span class="line2"></span>
-                <span class="line3"></span>
+            <button class="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="navLinks">
+                <span class="line1"></span><span class="line2"></span><span class="line3"></span>
             </button>
         </nav>
     </header>
+    <main id="main">
 
-    <main>
-        <section id="galerie" class="gallery-section container" style="padding-top: 120px;">
-            <h2 class="section-title">Notre Galerie</h2>
-            <div class="gallery-grid" id="galleryGrid">
-                <!-- Les images seront injectées par JavaScript -->
+        <section class="page-hero">
+            <div class="container">
+                <span class="eyebrow">Nos réalisations</span>
+                <h1 class="section-title">Notre <em>galerie</em></h1>
+                <p>Cliquez sur une photo pour l'agrandir, puis commandez le modèle qui vous plaît sur WhatsApp.</p>
             </div>
         </section>
-
-        <section id="videos" class="video-section container">
-            <h2 class="section-title">Nos Créations en Mouvement</h2>
-            <div class="video-grid">
-                <div class="main-video reveal">
-                    <video controls poster="img/logo.jpg">
-                        <source src="img/VID-20260204-WA0128.mp4" type="video/mp4">
-                        Votre navigateur ne supporte pas la vidéo.
-                    </video>
-                    <h3>Défilé Collection Prestige</h3>
+        <section class="section" style="padding-top:40px" id="galerie">
+            <div class="container">
+                <div class="filters" role="group" aria-label="Filtrer la galerie">
+                    <button class="chip active" data-filter="tous">Tous<small>107</small></button>
+                    <button class="chip" data-filter="homme">Homme<small>46</small></button>
+                    <button class="chip" data-filter="femme">Femme<small>2</small></button>
+                    <button class="chip" data-filter="prestige">Prestige<small>5</small></button>
+                    <button class="chip" data-filter="tissus">Tissus<small>39</small></button>
+                    <button class="chip" data-filter="jeans">Jeans &amp; pantalons<small>15</small></button>
                 </div>
-                <div class="side-videos">
-                    <div class="side-video highlight-pub reveal">
-                        <span class="pub-badge">Publicité</span>
-                        <video controls>
-                            <source src="img/VID-20260204-WA0114.mp4" type="video/mp4">
-                        </video>
-                        <h4>Aperçu Atelier</h4>
-                    </div>
-                    <div class="side-video highlight-pub reveal">
-                        <span class="pub-badge">Focus</span>
-                        <video controls>
-                            <source src="img/VID-20260204-WA0115.mp4" type="video/mp4">
-                        </video>
-                        <h4>Détails & Finitions</h4>
-                    </div>
+                <div class="gallery-grid" id="galleryGrid"></div>
+                <div class="load-more"><button class="btn btn-ghost" id="loadMore" hidden>Voir plus de modèles</button></div>
+            </div>
+        </section>
+        <section class="section alt" id="videos">
+            <div class="container">
+                <div class="section-head reveal">
+                    <span class="eyebrow">En mouvement</span>
+                    <h2 class="section-title">Nos créations en <em>vidéo</em></h2>
+                </div>
+                <div class="videos">
+                    <div class="video-card reveal"><video controls preload="none" playsinline poster="img/poster-VID-20260204-WA0128.jpg"><source src="img/VID-20260204-WA0128.mp4" type="video/mp4">Votre navigateur ne supporte pas la vidéo.</video><h3>Défilé collection prestige</h3></div>
+                    <div class="video-card reveal"><video controls preload="none" playsinline poster="img/poster-VID-20260204-WA0123.jpg"><source src="img/VID-20260204-WA0123.mp4" type="video/mp4">Votre navigateur ne supporte pas la vidéo.</video><h3>Aperçu de l'atelier</h3></div>
+                    <div class="video-card reveal"><video controls preload="none" playsinline poster="img/poster-video.jpg"><source src="img/video.mp4" type="video/mp4">Votre navigateur ne supporte pas la vidéo.</video><h3>Détails &amp; finitions</h3></div>
                 </div>
             </div>
         </section>
     </main>
-
-    <footer id="contact">
+    <footer>
         <div class="container footer-content">
             <div class="footer-info">
                 <h3>Sarkin Wanka Fashion Design</h3>
-                <p>Excellence & Élégance</p>
+                <p>Excellence &amp; élégance. Couture sur mesure pour hommes et femmes à Niamey.</p>
             </div>
-            <div class="footer-contact">
-                <p>Contactez-nous pour vos commandes sur mesure.</p>
-                <p><strong>FAD :</strong> +227 92 62 27 64 / +227 86 54 86 79</p>
-                <div class="social-icons">
-                    <a href="https://wa.me/22792622764" target="_blank" class="wa-btn" style="margin-top: 10px;">Nous
-                        contacter via WhatsApp</a>
-                </div>
+            <div>
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="galerie.html">Galerie</a></li>
+                    <li><a href="galerie.html#videos">Vidéos</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="tel:+22792622764">+227 92 62 27 64</a></li>
+                    <li><a href="tel:+22786548679">+227 86 54 86 79</a></li>
+                    <li>Niamey, Niger</li>
+                </ul>
             </div>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2024 Sarkin Wanka Fashion Design. Tous droits réservés.</p>
+        <div class="container footer-bottom">
+            <p>&copy; <span id="year">2026</span> Sarkin Wanka Fashion Design. Tous droits réservés.</p>
         </div>
     </footer>
-
-    <!-- Lightbox for Gallery -->
-    <div id="lightbox" class="lightbox">
-        <span class="close">&times;</span>
-        <img class="lightbox-content" id="lightboxImg">
+    <a class="wa-float" href="https://wa.me/22792622764" target="_blank" rel="noopener" aria-label="Discuter sur WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2a9.9 9.9 0 0 0-8.5 14.9L2 22l5.25-1.38A9.9 9.9 0 1 0 12.04 2Zm5.8 14.07c-.25.7-1.45 1.34-2 1.4-.52.06-1.17.09-1.88-.12a17 17 0 0 1-1.7-.63c-3-1.3-4.95-4.32-5.1-4.52-.15-.2-1.2-1.6-1.2-3.05s.76-2.16 1.03-2.46c.27-.3.6-.37.8-.37h.57c.18 0 .43-.07.67.51.25.6.85 2.06.92 2.2.08.15.13.33.03.52-.1.2-.15.32-.3.5-.15.17-.31.38-.45.51-.15.15-.3.31-.13.6.17.3.78 1.28 1.67 2.07 1.15 1.02 2.12 1.34 2.42 1.49.3.15.47.12.65-.07.17-.2.75-.87.95-1.17.2-.3.4-.25.67-.15.27.1 1.73.82 2.03.97.3.15.5.22.57.35.08.12.08.72-.17 1.42Z"/></svg></a>
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Aperçu de l'image">
+        <button class="lb-btn lb-close" aria-label="Fermer">&times;</button>
+        <button class="lb-btn lb-prev" aria-label="Image précédente">&#8249;</button>
+        <img class="lightbox-content" id="lightboxImg" alt="">
+        <button class="lb-btn lb-next" aria-label="Image suivante">&#8250;</button>
+        <div class="lb-meta"><span id="lbCount"></span><a class="wa-btn" id="lbWa" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2a9.9 9.9 0 0 0-8.5 14.9L2 22l5.25-1.38A9.9 9.9 0 1 0 12.04 2Zm5.8 14.07c-.25.7-1.45 1.34-2 1.4-.52.06-1.17.09-1.88-.12a17 17 0 0 1-1.7-.63c-3-1.3-4.95-4.32-5.1-4.52-.15-.2-1.2-1.6-1.2-3.05s.76-2.16 1.03-2.46c.27-.3.6-.37.8-.37h.57c.18 0 .43-.07.67.51.25.6.85 2.06.92 2.2.08.15.13.33.03.52-.1.2-.15.32-.3.5-.15.17-.31.38-.45.51-.15.15-.3.31-.13.6.17.3.78 1.28 1.67 2.07 1.15 1.02 2.12 1.34 2.42 1.49.3.15.47.12.65-.07.17-.2.75-.87.95-1.17.2-.3.4-.25.67-.15.27.1 1.73.82 2.03.97.3.15.5.22.57.35.08.12.08.72-.17 1.42Z"/></svg>Commander ce modèle</a></div>
     </div>
-
     <script src="script.js"></script>
 </body>
-
 </html>
