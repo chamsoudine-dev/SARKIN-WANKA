@@ -1,121 +1,131 @@
-/* Sarkin Wanka Fashion Design — script v2 */
+/* Sarkin Wanka Fashion Design — script v3 (performance + nouvelles images) */
 document.addEventListener('DOMContentLoaded', () => {
     const WA_NUMBER = '22792622764';
-    const PAGE_SIZE = 24;
+    const PAGE_SIZE = 16; // réduit pour un rendu initial plus rapide
 
-    // === GALERIE : une ligne par image  ['fichier.jpg', 'categorie'] ===
-    // Catégories : homme, femme, prestige, tissus, jeans
+    // === GALERIE COMPLÈTE — toutes les images présentes dans /img ===
+    // Catégories : homme, femme, prestige, tissus, jeans, atelier
     const GALLERY = [
-        ['HOM 1.jpg', 'homme'],
-        ['MODEL 1.jpg', 'prestige'],
-        ['F 1.jpg', 'femme'],
-        ['3.jpg', 'jeans'],
-        ['1.04.jpg', 'tissus'],
-        ['HOM 2.jpg', 'homme'],
-        ['MODEL 2.jpg', 'prestige'],
-        ['F 2.jpg', 'femme'],
-        ['4.4.jpg', 'jeans'],
-        ['1.08.jpg', 'tissus'],
-        ['HOM 3.jpg', 'homme'],
-        ['MODEL 3.jpg', 'prestige'],
-        ['12.jpg', 'jeans'],
-        ['1.09.jpg', 'tissus'],
-        ['HOM 4.jpg', 'homme'],
-        ['MODEL 4.jpg', 'prestige'],
-        ['13.jpg', 'jeans'],
-        ['5c2ef90c2dd642f29b1e4513b8bf38ab.jpg', 'tissus'],
-        ['HOM 5.jpg', 'homme'],
-        ['MODEL 5.jpg', 'prestige'],
-        ['16.jpg', 'jeans'],
-        ['14.jpg', 'tissus'],
-        ['HOM 6.jpg', 'homme'],
-        ['18.jpg', 'jeans'],
-        ['0228846087b84604b6dc88d46bc94543.jpg', 'tissus'],
-        ['HOM 7.jpg', 'homme'],
-        ['19.jpg', 'jeans'],
-        ['IMG-20260204-WA0064.jpg', 'tissus'],
-        ['HOM 8.jpg', 'homme'],
-        ['20.jpg', 'jeans'],
-        ['IMG-20260204-WA0065.jpg', 'tissus'],
-        ['HOM 9.jpg', 'homme'],
-        ['21.jpg', 'jeans'],
-        ['IMG-20260204-WA0100.jpg', 'tissus'],
-        ['HOM 10.jpg', 'homme'],
-        ['22.jpg', 'jeans'],
-        ['TISSU POUR HOMME 2.jpg', 'tissus'],
-        ['HOM 11.jpg', 'homme'],
-        ['PENTALON POUR HOMME GN2.jpg', 'jeans'],
-        ['TISSU POUR HOMME 3.jpg', 'tissus'],
-        ['HOM 12.jpg', 'homme'],
-        ['PENTALON POUR HOMME GN11.jpg', 'jeans'],
-        ['TISSU POUR HOMME 4.jpg', 'tissus'],
-        ['HOM 13.jpg', 'homme'],
-        ['PENTALON POUR HOMME GN17.jpg', 'jeans'],
-        ['TISSU POUR HOMME 5.jpg', 'tissus'],
-        ['HOM 14.jpg', 'homme'],
-        ['PENTALON POUR HOMME GN20.jpg', 'jeans'],
-        ['TISSU POUR HOMME 6.jpg', 'tissus'],
-        ['HOM 15.jpg', 'homme'],
-        ['PENTALON POUR HOMME GN23.jpg', 'jeans'],
-        ['TISSU POUR HOMME 7.jpg', 'tissus'],
-        ['HOM 16.jpg', 'homme'],
-        ['TISSU POUR HOMME 8.jpg', 'tissus'],
-        ['HOM 17.jpg', 'homme'],
-        ['TISSU POUR HOMME 9.jpg', 'tissus'],
-        ['HOM 18.jpg', 'homme'],
-        ['TISSU POUR HOMME 10.jpg', 'tissus'],
-        ['HOM 19.jpg', 'homme'],
-        ['TISSU POUR HOMME 12.jpg', 'tissus'],
-        ['HOM 20.jpg', 'homme'],
-        ['TISSU POUR HOMME 13.jpg', 'tissus'],
-        ['HOM 21.jpg', 'homme'],
-        ['TISSU POUR HOMME 14.jpg', 'tissus'],
-        ['HOM 22.jpg', 'homme'],
-        ['TISSU POUR HOMME 15.jpg', 'tissus'],
-        ['HOM 23.jpg', 'homme'],
-        ['TISSU POUR HOMME 16.jpg', 'tissus'],
-        ['HOM 24.1.jpg', 'homme'],
-        ['TISSU POUR HOMME 17.jpg', 'tissus'],
-        ['HOM 24.2.jpg', 'homme'],
-        ['TISSU POUR HOMME 18.jpg', 'tissus'],
-        ['HOM 24.jpg', 'homme'],
-        ['TISSU POUR HOMME 19.jpg', 'tissus'],
-        ['HOM 25.jpg', 'homme'],
-        ['TISSU POUR HOMME 20.jpg', 'tissus'],
-        ['HOM 26.jpg', 'homme'],
-        ['TYPE8.jpg', 'tissus'],
-        ['HOM 27.jpg', 'homme'],
-        ['TYPE10.jpg', 'tissus'],
-        ['HOM 28.jpg', 'homme'],
-        ['TYPE 1.jpg', 'tissus'],
-        ['HOM 29.jpg', 'homme'],
-        ['TYPE 2.jpg', 'tissus'],
+        // ── HOMME ──
+        ['HOM 1.jpg',   'homme'],
+        ['HOM 2.jpg',   'homme'],
+        ['HOM 3.jpg',   'homme'],
+        ['HOM 4.jpg',   'homme'],
+        ['HOM 5.jpg',   'homme'],
+        ['HOM 6.jpg',   'homme'],
+        ['HOM 7.jpg',   'homme'],
+        ['HOM 8.jpg',   'homme'],
+        ['HOM 9.jpg',   'homme'],
+        ['HOM 10.jpg',  'homme'],
+        ['HOM 11.jpg',  'homme'],
+        ['HOM 12.jpg',  'homme'],
+        ['HOM 13.jpg',  'homme'],
+        ['HOM 14.jpg',  'homme'],
+        ['HOM 15.jpg',  'homme'],
+        ['HOM 16.jpg',  'homme'],
+        ['HOM 17.jpg',  'homme'],
+        ['HOM 18.jpg',  'homme'],
+        ['HOM 19.jpg',  'homme'],
+        ['HOM 20.jpg',  'homme'],
+        ['HOM 21.jpg',  'homme'],
+        ['HOM 22.jpg',  'homme'],
+        ['HOM 23.jpg',  'homme'],
+        ['HOM 24.jpg',  'homme'],
+        ['HOM 24.1.jpg','homme'],
+        ['HOM 24.2.jpg','homme'],
+        ['HOM 25.jpg',  'homme'],
+        ['HOM 26.jpg',  'homme'],
+        ['HOM 27.jpg',  'homme'],
+        ['HOM 28.jpg',  'homme'],
+        ['HOM 29.jpg',  'homme'],
         ['HOMME 1.jpg', 'homme'],
-        ['TYPE 3.jpg', 'tissus'],
         ['HOMME 2.jpg', 'homme'],
-        ['TYPE 4.jpg', 'tissus'],
         ['HOMME 3.jpg', 'homme'],
-        ['TYPE 5.jpg', 'tissus'],
         ['HOMME 4.jpg', 'homme'],
-        ['TYPE 6.jpg', 'tissus'],
         ['HOMME 5.jpg', 'homme'],
-        ['TYPE 7.jpg', 'tissus'],
         ['HOMME 6.jpg', 'homme'],
-        ['TYPE 9.jpg', 'tissus'],
         ['HOMME 7.jpg', 'homme'],
-        ['TYPE 11.jpg', 'tissus'],
         ['HOMME 8.jpg', 'homme'],
-        ['c8833675b20f420abed8015c92201fd5.jpg', 'tissus'],
         ['HOMME 9.jpg', 'homme'],
-        ['HOMME 10.jpg', 'homme'],
-        ['HOMME 11.jpg', 'homme'],
-        ['HOMME 12.jpg', 'homme'],
-        ['HOMME 13.jpg', 'homme'],
-        ['HOMME 15.jpg', 'homme'],
-        ['HOMME 16.jpg', 'homme']
+        ['HOMME 10.jpg','homme'],
+        ['HOMME 11.jpg','homme'],
+        ['HOMME 12.jpg','homme'],
+        ['HOMME 16.jpg','homme'],
+        // Nouvelles images homme
+        ['1097259896747166321.jpg', 'homme'],
+        ['1125548131921958513.jpg', 'homme'],
+        ['304767099809241552.jpg',  'homme'],
+        ['362962051241280809.jpg',  'homme'],
+        ['582160689388105498.jpg',  'homme'],
+        ['738871882658625961.jpg',  'homme'],
+        ['934285885218715083.jpg',  'homme'],
+        ['958281626986217747.jpg',  'homme'],
+        ['967429563945368524.jpg',  'homme'],
+        ['1071575305113543216 (1).jpg', 'homme'],
+        ['R.jpg', 'homme'],
+
+        // ── FEMME ──
+        ['F 1.jpg', 'femme'],
+        ['F 2.jpg', 'femme'],
+        ['1112318808002265329.jpg', 'femme'],
+
+        // ── PRESTIGE ──
+        ['MODEL 1.jpg', 'prestige'],
+        ['MODEL 2.jpg', 'prestige'],
+        ['MODEL 3.jpg', 'prestige'],
+        ['MODEL 4.jpg', 'prestige'],
+        ['MODEL 5.jpg', 'prestige'],
+        ['099905e9788b85489f327aa0313cede3.jpg', 'prestige'],
+        ['0bef6f23bc84b67adfc790f72fb5d6b5.jpg', 'prestige'],
+        ['35cf38c5abb4b16bfc72e6beb7741191.jpg',  'prestige'],
+        ['980f7c8323760eeab1fe07146a33a114.jpg',  'prestige'],
+        ['e5ea3ecca08d11015fe6a4ec08e859e8.jpg',  'prestige'],
+
+        // ── TISSUS ──
+        ['1.04.jpg', 'tissus'],
+        ['1.08.jpg', 'tissus'],
+        ['1.09.jpg', 'tissus'],
+        ['TISSU POUR HOMME 20.jpg', 'tissus'],
+        ['TYPE 1.jpg',  'tissus'],
+        ['TYPE 2.jpg',  'tissus'],
+        ['TYPE 3.jpg',  'tissus'],
+        ['TYPE 4.jpg',  'tissus'],
+        ['TYPE 5.jpg',  'tissus'],
+        ['TYPE 6.jpg',  'tissus'],
+        ['TYPE 7.jpg',  'tissus'],
+        ['TYPE 9.jpg',  'tissus'],
+        ['TYPE8.jpg',   'tissus'],
+        ['TYPE10.jpg',  'tissus'],
+        ['TYPE 11.jpg', 'tissus'],
+        ['IMG-20260204-WA0063.jpg', 'tissus'],
+        ['IMG-20260204-WA0064.jpg', 'tissus'],
+        ['IMG-20260204-WA0065.jpg', 'tissus'],
+        ['IMG-20260204-WA0066.jpg', 'tissus'],
+        ['IMG-20260204-WA0077.jpg', 'tissus'],
+        ['IMG-20260204-WA0080.jpg', 'tissus'],
+        ['IMG-20260204-WA0100.jpg', 'tissus'],
+        // Nouvelles images OIP (tissus/modèles)
+        ['OIP.webp',      'tissus'],
+        ['OIP (1).webp',  'tissus'],
+        ['OIP (2).webp',  'tissus'],
+        ['OIP (3).webp',  'tissus'],
+        ['OIP (4).webp',  'tissus'],
+        ['OIP (5).webp',  'tissus'],
+        ['OIP (6).webp',  'tissus'],
+        ['OIP (7).webp',  'tissus'],
+        ['OIP (8).webp',  'tissus'],
+        ['OIP (9).webp',  'tissus'],
+        ['OIP (10).webp', 'tissus'],
+        ['OIP (11).webp', 'tissus'],
+
+        // ── ATELIER ──
+        ['ATTELIER.jpg', 'atelier'],
+        ['image de l\'attelier.jpg', 'atelier'],
+        ['Atelier de couture FAHAD-COUTURE.png', 'atelier'],
+        ['télécharger.jpg', 'atelier'],
     ];
-    const LABELS = { homme: 'Homme', femme: 'Femme', prestige: 'Prestige', tissus: 'Tissus', jeans: 'Jeans & pantalons' };
-    const NAMES = { homme: 'Tenue homme', femme: 'Tenue femme', prestige: 'Modèle prestige', tissus: 'Tissu', jeans: 'Jean / pantalon' };
+    const LABELS = { homme: 'Homme', femme: 'Femme', prestige: 'Prestige', tissus: 'Tissus', atelier: 'Atelier' };
+    const NAMES  = { homme: 'Tenue homme', femme: 'Tenue femme', prestige: 'Modèle prestige', tissus: 'Tissu', atelier: 'Atelier' };
 
     // Numérotation par catégorie
     const counters = {};
@@ -200,9 +210,10 @@ document.addEventListener('DOMContentLoaded', () => {
     function card(it, i) {
         const el = document.createElement('div');
         el.className = 'gallery-item';
+        const imgUrl = encodeURI('img/' + it.src);
         el.innerHTML = `
             <button class="img-container" aria-label="Agrandir : ${it.name}">
-                <img src="img/${it.src}" alt="${it.name}" loading="lazy">
+                <img src="${imgUrl}" alt="${it.name}" loading="lazy" decoding="async" class="img-lazy" onload="this.classList.add('img-loaded'); this.parentElement.classList.add('loaded')" onerror="this.classList.add('img-loaded'); this.parentElement.classList.add('loaded')">
                 <span class="zoom-tag">Agrandir</span>
                 <span class="premium-badge">
                     <svg viewBox="0 0 24 24"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
@@ -218,8 +229,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function renderMore() {
+        const frag = document.createDocumentFragment();
         const slice = current.slice(shown, shown + PAGE_SIZE);
-        slice.forEach((it, k) => { const c = card(it, shown + k); c.style.animationDelay = (k * 30) + 'ms'; grid.appendChild(c); });
+        slice.forEach((it, k) => {
+            const c = card(it, shown + k);
+            c.style.animationDelay = Math.min(k * 15, 150) + 'ms';
+            frag.appendChild(c);
+        });
+        grid.appendChild(frag);
         shown += slice.length;
         moreBtn.hidden = shown >= current.length;
     }
@@ -230,18 +247,32 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('.chip').forEach(c => c.classList.toggle('active', c.dataset.filter === f));
         renderMore();
     }
-    document.querySelectorAll('.chip').forEach(c => c.addEventListener('click', () => { history.replaceState(null, '', c.dataset.filter === 'tous' ? location.pathname : '#' + c.dataset.filter); applyFilter(c.dataset.filter); }));
+    document.querySelectorAll('.chip').forEach(c => {
+        const cat = c.dataset.filter;
+        const count = cat === 'tous' ? items.length : items.filter(it => it.cat === cat).length;
+        const small = c.querySelector('small');
+        if (small) small.textContent = count;
+        c.addEventListener('click', () => { history.replaceState(null, '', c.dataset.filter === 'tous' ? location.pathname : '#' + c.dataset.filter); applyFilter(c.dataset.filter); });
+    });
     moreBtn.addEventListener('click', renderMore);
 
     const hash = location.hash.slice(1);
     applyFilter(LABELS[hash] ? hash : 'tous');
     addEventListener('hashchange', () => { const h = location.hash.slice(1); if (LABELS[h]) applyFilter(h); });
 
+    // Préchargement intelligent des images adjacentes
+    function preloadNearby(cIdx) {
+        const next = current[(cIdx + 1) % current.length];
+        const prev = current[(cIdx - 1 + current.length) % current.length];
+        if (next) { const i = new Image(); i.src = encodeURI('img/' + next.src); }
+        if (prev) { const i = new Image(); i.src = encodeURI('img/' + prev.src); }
+    }
+
     // ===== LIGHTBOX PREMIUM =====
     function openLb(i) {
         idx = i;
         const it = current[idx];
-        lbImg.src = 'img/' + it.src;
+        lbImg.src = encodeURI('img/' + it.src);
         lbImg.alt = it.name;
         if (lbName) lbName.textContent = it.name;
         if (lbCat)  lbCat.textContent  = LABELS[it.cat];
@@ -249,6 +280,7 @@ document.addEventListener('DOMContentLoaded', () => {
         lbWa.href = waLink(it);
         lb.classList.add('open');
         document.body.style.overflow = 'hidden';
+        preloadNearby(idx);
     }
 
     function closeLb() {

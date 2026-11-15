@@ -176,12 +176,50 @@ section { position: relative; }
 .chip small { opacity: .65; margin-left: 4px; font-weight: 400; }
 
 .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 18px; }
-.gallery-item { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; display: flex; flex-direction: column; animation: fadeUp .6s var(--ease) both; transition: transform .4s var(--ease), border-color .3s, box-shadow .4s; }
+.gallery-item {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    animation: fadeUp .5s var(--ease) both;
+    transition: transform .35s var(--ease), border-color .3s, box-shadow .35s;
+    content-visibility: auto;
+    contain-intrinsic-size: 250px 330px;
+    transform: translateZ(0);
+}
 .gallery-item:hover { transform: translateY(-6px); border-color: var(--gold); box-shadow: 0 20px 50px rgba(212, 175, 55, .15); }
 @keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
 .img-container { position: relative; aspect-ratio: 3 / 4; overflow: hidden; cursor: zoom-in; background: var(--surface-2); border: 0; padding: 0; width: 100%; display: block; }
 .img-container img { width: 100%; height: 100%; object-fit: cover; object-position: top; transition: transform .7s var(--ease); }
 .img-container:hover img { transform: scale(1.08); }
+
+/* ── Lazy load fluide ── */
+.img-lazy {
+    opacity: 0;
+    transition: opacity .5s ease, transform .7s var(--ease);
+    background: var(--surface-2);
+    will-change: opacity;
+}
+.img-lazy.img-loaded { opacity: 1; }
+.img-error .img-lazy { opacity: .3; filter: grayscale(1); }
+
+/* Skeleton shimmer pendant le chargement */
+.img-container::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(90deg,
+        transparent 0%, rgba(212,175,55,.06) 50%, transparent 100%);
+    background-size: 200% 100%;
+    animation: shimmer 1.6s infinite;
+    pointer-events: none;
+    opacity: 1;
+    transition: opacity .3s;
+}
+.img-container.loaded::after,
+.img-container:has(.img-loaded)::after { opacity: 0; animation: none; visibility: hidden; }
+@keyframes shimmer { from { background-position: 200% 0; } to { background-position: -200% 0; } }
 .zoom-tag {
     position: absolute; right: 12px; top: 12px;
     background: rgba(0, 0, 0, .72); color: var(--gold);
