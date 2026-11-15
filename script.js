@@ -167,9 +167,33 @@ document.addEventListener('DOMContentLoaded', () => {
     const grid = document.getElementById('galleryGrid');
     if (!grid) return;
     const moreBtn = document.getElementById('loadMore');
-    const lb = document.getElementById('lightbox'), lbImg = document.getElementById('lightboxImg');
-    const lbCount = document.getElementById('lbCount'), lbWa = document.getElementById('lbWa');
+    const lb = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lightboxImg');
+    const lbCount = document.getElementById('lbCount');
+    const lbName = document.getElementById('lbName');
+    const lbCat  = document.getElementById('lbCat');
+    const lbWa   = document.getElementById('lbWa');
+    const lbDownload = document.getElementById('lbDownload');
+    const lbSuggest  = document.getElementById('lbSuggest');
+    const lbShare    = document.getElementById('lbShare');
+    const lbToast    = document.getElementById('lbToast');
+
+    // Modal suggestion
+    const suggestionModal = document.getElementById('suggestionModal');
+    const suggestionThumb = document.getElementById('suggestionThumb');
+    const suggestionModelName = document.getElementById('suggestionModelName');
+    const sendSuggestion = document.getElementById('sendSuggestion');
+
     let filter = 'tous', shown = 0, current = [], idx = 0;
+
+    // ---- Toast helper ----
+    let toastTimer;
+    function showToast(msg, icon = '✓') {
+        lbToast.innerHTML = `<span style="color:var(--gold);font-size:1rem">${icon}</span> ${msg}`;
+        lbToast.classList.add('show');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => lbToast.classList.remove('show'), 3200);
+    }
 
     const WA_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2a9.9 9.9 0 0 0-8.5 14.9L2 22l5.25-1.38A9.9 9.9 0 1 0 12.04 2Zm5.8 14.07c-.25.7-1.45 1.34-2 1.4-.52.06-1.17.09-1.88-.12a17 17 0 0 1-1.7-.63c-3-1.3-4.95-4.32-5.1-4.52-.15-.2-1.2-1.6-1.2-3.05s.76-2.16 1.03-2.46c.27-.3.6-.37.8-.37h.57c.18 0 .43-.07.67.51.25.6.85 2.06.92 2.2.08.15.13.33.03.52-.1.2-.15.32-.3.5-.15.17-.31.38-.45.51-.15.15-.3.31-.13.6.17.3.78 1.28 1.67 2.07 1.15 1.02 2.12 1.34 2.42 1.49.3.15.47.12.65-.07.17-.2.75-.87.95-1.17.2-.3.4-.25.67-.15.27.1 1.73.82 2.03.97.3.15.5.22.57.35.08.12.08.72-.17 1.42Z"/></svg>';
 
@@ -180,6 +204,10 @@ document.addEventListener('DOMContentLoaded', () => {
             <button class="img-container" aria-label="Agrandir : ${it.name}">
                 <img src="img/${it.src}" alt="${it.name}" loading="lazy">
                 <span class="zoom-tag">Agrandir</span>
+                <span class="premium-badge">
+                    <svg viewBox="0 0 24 24"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
+                    Premium
+                </span>
             </button>
             <div class="item-info">
                 <div><h3>${it.name}</h3><p>${LABELS[it.cat]}</p></div>
@@ -209,27 +237,162 @@ document.addEventListener('DOMContentLoaded', () => {
     applyFilter(LABELS[hash] ? hash : 'tous');
     addEventListener('hashchange', () => { const h = location.hash.slice(1); if (LABELS[h]) applyFilter(h); });
 
-    // ===== Lightbox =====
+    // ===== LIGHTBOX PREMIUM =====
     function openLb(i) {
-        idx = i; const it = current[idx];
-        lbImg.src = 'img/' + it.src; lbImg.alt = it.name;
-        lbCount.textContent = it.name + '  ·  ' + (idx + 1) + ' / ' + current.length;
+        idx = i;
+        const it = current[idx];
+        lbImg.src = 'img/' + it.src;
+        lbImg.alt = it.name;
+        if (lbName) lbName.textContent = it.name;
+        if (lbCat)  lbCat.textContent  = LABELS[it.cat];
+        if (lbCount) lbCount.textContent = (idx + 1) + ' / ' + current.length;
         lbWa.href = waLink(it);
-        lb.classList.add('open'); document.body.style.overflow = 'hidden';
+        lb.classList.add('open');
+        document.body.style.overflow = 'hidden';
     }
-    function closeLb() { lb.classList.remove('open'); document.body.style.overflow = ''; }
+
+    function closeLb() {
+        lb.classList.remove('open');
+        document.body.style.overflow = '';
+    }
+
     const step = d => openLb((idx + d + current.length) % current.length);
+
     lb.querySelector('.lb-close').addEventListener('click', closeLb);
     lb.querySelector('.lb-prev').addEventListener('click', () => step(-1));
     lb.querySelector('.lb-next').addEventListener('click', () => step(1));
     lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
+
     addEventListener('keydown', e => {
         if (!lb.classList.contains('open')) return;
         if (e.key === 'Escape') closeLb();
         if (e.key === 'ArrowLeft') step(-1);
         if (e.key === 'ArrowRight') step(1);
     });
+
+    // Swipe mobile
     let x0 = null;
     lb.addEventListener('touchstart', e => { x0 = e.touches[0].clientX; }, { passive: true });
-    lb.addEventListener('touchend', e => { if (x0 === null) return; const dx = e.changedTouches[0].clientX - x0; if (Math.abs(dx) > 50) step(dx < 0 ? 1 : -1); x0 = null; });
+    lb.addEventListener('touchend', e => {
+        if (x0 === null) return;
+        const dx = e.changedTouches[0].clientX - x0;
+        if (Math.abs(dx) > 50) step(dx < 0 ? 1 : -1);
+        x0 = null;
+    });
+
+    // ===== TÉLÉCHARGER l'image =====
+    if (lbDownload) {
+        lbDownload.addEventListener('click', async () => {
+            const it = current[idx];
+            try {
+                const response = await fetch('img/' + it.src);
+                const blob = await response.blob();
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = it.name.replace(/\s+/g, '_') + '.jpg';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+                showToast('Image téléchargée avec succès !', '📥');
+            } catch {
+                // Fallback : ouvrir dans un nouvel onglet
+                window.open('img/' + it.src, '_blank', 'noopener');
+                showToast('Image ouverte — longue pression pour sauvegarder', '📱');
+            }
+        });
+    }
+
+    // ===== PARTAGER / METTRE EN LIGNE =====
+    if (lbShare) {
+        lbShare.addEventListener('click', async () => {
+            const it = current[idx];
+            const shareUrl = location.origin + location.pathname.replace(/\/[^/]*$/, '/') + 'img/' + it.src;
+            const shareData = {
+                title: it.name + ' — Sarkin Wanka Fashion Design',
+                text: '✨ Découvrez ce magnifique modèle : ' + it.name + ' chez Sarkin Wanka Fashion Design. Commandez sur WhatsApp !',
+                url: shareUrl
+            };
+            if (navigator.share) {
+                try {
+                    await navigator.share(shareData);
+                    showToast('Partagé avec succès !', '🌐');
+                } catch (e) {
+                    if (e.name !== 'AbortError') fallbackShare(shareUrl, it.name);
+                }
+            } else {
+                fallbackShare(shareUrl, it.name);
+            }
+        });
+    }
+
+    function fallbackShare(url, name) {
+        try {
+            navigator.clipboard.writeText(url);
+            showToast('Lien copié dans le presse-papiers !', '🔗');
+        } catch {
+            const wa = `https://wa.me/?text=${encodeURIComponent('✨ ' + name + ' — Sarkin Wanka Fashion Design\n' + url)}`;
+            window.open(wa, '_blank', 'noopener');
+        }
+    }
+
+    // ===== MODAL SUGGESTION =====
+    function buildSuggestionWa() {
+        const it = current[idx];
+        const prenom = document.getElementById('suggestName').value.trim() || 'un(e) client(e)';
+        const type   = document.getElementById('suggestType').value;
+        const msg    = document.getElementById('suggestMsg').value.trim();
+        const imgUrl = location.origin + location.pathname.replace(/\/[^/]*$/, '/') + 'img/' + it.src;
+
+        const typeLabels = {
+            avis: 'Ce modèle m\'a beaucoup plu',
+            commande: 'Je veux commander ce modèle',
+            suggestion: 'J\'ai une suggestion de style',
+            bravo: 'Félicitations pour votre travail'
+        };
+
+        let text = `✨ *Bonjour Monsieur le PDG,*\n\nJe suis *${prenom}*.\n\n*${typeLabels[type]}.*\n\nModèle : *${it.name}* (${LABELS[it.cat]})\n${imgUrl}`;
+        if (msg) text += `\n\n💬 ${msg}`;
+        text += '\n\n— Envoyé depuis le site Sarkin Wanka Fashion Design';
+
+        return `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(text)}`;
+    }
+
+    if (lbSuggest) {
+        lbSuggest.addEventListener('click', () => {
+            const it = current[idx];
+            if (suggestionThumb) { suggestionThumb.src = 'img/' + it.src; }
+            if (suggestionModelName) suggestionModelName.textContent = it.name;
+            if (sendSuggestion) sendSuggestion.href = buildSuggestionWa();
+            if (suggestionModal) {
+                suggestionModal.classList.add('open');
+                document.body.style.overflow = 'hidden';
+            }
+        });
+    }
+
+    // Mise à jour du lien WA en temps réel dans la modal
+    ['suggestName', 'suggestType', 'suggestMsg'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el && sendSuggestion) el.addEventListener('input', () => { sendSuggestion.href = buildSuggestionWa(); });
+    });
+
+    function closeSuggestion() {
+        if (suggestionModal) suggestionModal.classList.remove('open');
+        document.body.style.overflow = lb.classList.contains('open') ? 'hidden' : '';
+    }
+
+    document.getElementById('closeSuggestion')?.addEventListener('click', closeSuggestion);
+    document.getElementById('cancelSuggestion')?.addEventListener('click', closeSuggestion);
+    suggestionModal?.addEventListener('click', e => { if (e.target === suggestionModal) closeSuggestion(); });
+
+    if (sendSuggestion) {
+        sendSuggestion.addEventListener('click', () => {
+            setTimeout(() => {
+                closeSuggestion();
+                showToast('Votre message a été envoyé au PDG !', '💬');
+            }, 400);
+        });
+    }
 });
