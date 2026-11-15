@@ -5,6 +5,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // === GALERIE COMPLÈTE — toutes les images présentes dans /img ===
     const GALLERY = [
+        // ── TOP 1, 2, 3 — PRESTIGE SIGNATURE PDG ──
+        ['PRESTIGE_PDG_1.jpg', 'prestige'],
+        ['PRESTIGE_PDG_2.jpg', 'prestige'],
+        ['PRESTIGE_PDG_3.jpg', 'prestige'],
+
         // ── HOMME ──
         ['HOM 1.jpg',   'homme'],
         ['HOM 2.jpg',   'homme'],
