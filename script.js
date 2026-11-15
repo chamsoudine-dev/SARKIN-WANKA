@@ -1,10 +1,9 @@
-/* Sarkin Wanka Fashion Design — script v3 (performance + nouvelles images) */
+/* Sarkin Wanka Fashion Design — script v4 (stories + infinite scroll + lightbox premium) */
 document.addEventListener('DOMContentLoaded', () => {
     const WA_NUMBER = '22792622764';
-    const PAGE_SIZE = 16; // réduit pour un rendu initial plus rapide
+    const PAGE_SIZE = 16;
 
     // === GALERIE COMPLÈTE — toutes les images présentes dans /img ===
-    // Catégories : homme, femme, prestige, tissus, jeans, atelier
     const GALLERY = [
         // ── HOMME ──
         ['HOM 1.jpg',   'homme'],
@@ -104,7 +103,6 @@ document.addEventListener('DOMContentLoaded', () => {
         ['IMG-20260204-WA0077.jpg', 'tissus'],
         ['IMG-20260204-WA0080.jpg', 'tissus'],
         ['IMG-20260204-WA0100.jpg', 'tissus'],
-        // Nouvelles images OIP (tissus/modèles)
         ['OIP.webp',      'tissus'],
         ['OIP (1).webp',  'tissus'],
         ['OIP (2).webp',  'tissus'],
@@ -124,6 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ['Atelier de couture FAHAD-COUTURE.png', 'atelier'],
         ['télécharger.jpg', 'atelier'],
     ];
+
     const LABELS = { homme: 'Homme', femme: 'Femme', prestige: 'Prestige', tissus: 'Tissus', atelier: 'Atelier' };
     const NAMES  = { homme: 'Tenue homme', femme: 'Tenue femme', prestige: 'Modèle prestige', tissus: 'Tissu', atelier: 'Atelier' };
 
@@ -134,6 +133,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const n = String(counters[cat]).padStart(2, '0');
         return { src, cat, name: NAMES[cat] + ' ' + n };
     });
+
+    // Compteur total dans le héro
+    const statTotal = document.getElementById('statTotal');
+    if (statTotal) statTotal.textContent = items.length;
 
     function waLink(it) {
         const base = location.origin + location.pathname.replace(/\/[^/]*$/, '/');
@@ -173,32 +176,37 @@ document.addEventListener('DOMContentLoaded', () => {
         window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank', 'noopener');
     });
 
-    // ===== Galerie =====
+    // =========================================================
+    //  GALERIE
+    // =========================================================
     const grid = document.getElementById('galleryGrid');
     if (!grid) return;
-    const moreBtn = document.getElementById('loadMore');
-    const lb = document.getElementById('lightbox');
-    const lbImg = document.getElementById('lightboxImg');
-    const lbCount = document.getElementById('lbCount');
-    const lbName = document.getElementById('lbName');
-    const lbCat  = document.getElementById('lbCat');
-    const lbWa   = document.getElementById('lbWa');
-    const lbDownload = document.getElementById('lbDownload');
-    const lbSuggest  = document.getElementById('lbSuggest');
-    const lbShare    = document.getElementById('lbShare');
-    const lbToast    = document.getElementById('lbToast');
 
-    // Modal suggestion
-    const suggestionModal = document.getElementById('suggestionModal');
-    const suggestionThumb = document.getElementById('suggestionThumb');
+    const lb             = document.getElementById('lightbox');
+    const lbImg          = document.getElementById('lightboxImg');
+    const lbCount        = document.getElementById('lbCount');
+    const lbName         = document.getElementById('lbName');
+    const lbCat          = document.getElementById('lbCat');
+    const lbWa           = document.getElementById('lbWa');
+    const lbDownload     = document.getElementById('lbDownload');
+    const lbSuggest      = document.getElementById('lbSuggest');
+    const lbShare        = document.getElementById('lbShare');
+    const lbToast        = document.getElementById('lbToast');
+    const suggestionModal     = document.getElementById('suggestionModal');
+    const suggestionThumb     = document.getElementById('suggestionThumb');
     const suggestionModelName = document.getElementById('suggestionModelName');
-    const sendSuggestion = document.getElementById('sendSuggestion');
+    const sendSuggestion      = document.getElementById('sendSuggestion');
+    const sentinel       = document.getElementById('infiniteScrollSentinel');
+    const galleryLoading = document.getElementById('galleryLoading');
+    const galleryEnd     = document.getElementById('galleryEnd');
 
     let filter = 'tous', shown = 0, current = [], idx = 0;
+    let isLoadingMore = false;
 
     // ---- Toast helper ----
     let toastTimer;
     function showToast(msg, icon = '✓') {
+        if (!lbToast) return;
         lbToast.innerHTML = `<span style="color:var(--gold);font-size:1rem">${icon}</span> ${msg}`;
         lbToast.classList.add('show');
         clearTimeout(toastTimer);
@@ -228,39 +236,238 @@ document.addEventListener('DOMContentLoaded', () => {
         return el;
     }
 
+    // ---- Infinite scroll — renderMore ----
     function renderMore() {
-        const frag = document.createDocumentFragment();
-        const slice = current.slice(shown, shown + PAGE_SIZE);
-        slice.forEach((it, k) => {
-            const c = card(it, shown + k);
-            c.style.animationDelay = Math.min(k * 15, 150) + 'ms';
-            frag.appendChild(c);
-        });
-        grid.appendChild(frag);
-        shown += slice.length;
-        moreBtn.hidden = shown >= current.length;
+        if (isLoadingMore || shown >= current.length) return;
+        isLoadingMore = true;
+        if (galleryLoading) galleryLoading.hidden = false;
+
+        // Petit délai simulé pour effet fluide
+        setTimeout(() => {
+            const frag = document.createDocumentFragment();
+            const slice = current.slice(shown, shown + PAGE_SIZE);
+            slice.forEach((it, k) => {
+                const c = card(it, shown + k);
+                c.style.animationDelay = Math.min(k * 15, 150) + 'ms';
+                frag.appendChild(c);
+            });
+            grid.appendChild(frag);
+            shown += slice.length;
+
+            if (galleryLoading) galleryLoading.hidden = true;
+            isLoadingMore = false;
+
+            if (shown >= current.length) {
+                // Fin de collection
+                if (sentinel) sentinel.style.display = 'none';
+                if (galleryEnd) galleryEnd.hidden = false;
+            } else {
+                if (sentinel) sentinel.style.display = '';
+                if (galleryEnd) galleryEnd.hidden = true;
+            }
+        }, 300);
+    }
+
+    // IntersectionObserver sur la sentinelle
+    if (sentinel) {
+        const scrollObserver = new IntersectionObserver(entries => {
+            if (entries[0].isIntersecting) renderMore();
+        }, { rootMargin: '200px' });
+        scrollObserver.observe(sentinel);
     }
 
     function applyFilter(f) {
         filter = f; shown = 0; grid.innerHTML = '';
         current = f === 'tous' ? items : items.filter(i => i.cat === f);
         document.querySelectorAll('.chip').forEach(c => c.classList.toggle('active', c.dataset.filter === f));
+        // Réinitialiser les indicateurs
+        if (sentinel) sentinel.style.display = '';
+        if (galleryEnd) galleryEnd.hidden = true;
+        if (galleryLoading) galleryLoading.hidden = true;
+        isLoadingMore = false;
         renderMore();
     }
+
     document.querySelectorAll('.chip').forEach(c => {
         const cat = c.dataset.filter;
         const count = cat === 'tous' ? items.length : items.filter(it => it.cat === cat).length;
         const small = c.querySelector('small');
         if (small) small.textContent = count;
-        c.addEventListener('click', () => { history.replaceState(null, '', c.dataset.filter === 'tous' ? location.pathname : '#' + c.dataset.filter); applyFilter(c.dataset.filter); });
+        c.addEventListener('click', () => {
+            history.replaceState(null, '', c.dataset.filter === 'tous' ? location.pathname : '#' + c.dataset.filter);
+            applyFilter(c.dataset.filter);
+        });
     });
-    moreBtn.addEventListener('click', renderMore);
 
     const hash = location.hash.slice(1);
     applyFilter(LABELS[hash] ? hash : 'tous');
     addEventListener('hashchange', () => { const h = location.hash.slice(1); if (LABELS[h]) applyFilter(h); });
 
-    // Préchargement intelligent des images adjacentes
+    // =========================================================
+    //  STORIES — Carrousel défilement auto
+    // =========================================================
+    const storiesTrack   = document.getElementById('storiesTrack');
+    const storiesDots    = document.getElementById('storiesDots');
+    const storiesFill    = document.getElementById('storiesProgressFill');
+    const storiesPause   = document.getElementById('storiesPause');
+    const storiesPrev    = document.getElementById('storiesPrev');
+    const storiesNext    = document.getElementById('storiesNext');
+
+    if (storiesTrack) {
+        const STORY_DURATION = 3000; // ms par slide
+        let storyIdx = 0;
+        let storyPlaying = true;
+        let storyTimer = null;
+        let storyProgressStart = null;
+        let storyProgressReq = null;
+        const CARD_WIDTH = 150; // px (largeur approximative d'une story-card + gap)
+
+        // --- Génération des story-cards ---
+        function buildStories() {
+            storiesTrack.innerHTML = '';
+            items.forEach((it, i) => {
+                const card = document.createElement('button');
+                card.className = 'story-card';
+                card.setAttribute('aria-label', 'Voir ' + it.name);
+                card.innerHTML = `
+                    <img src="${encodeURI('img/' + it.src)}" alt="${it.name}" loading="lazy" decoding="async">
+                    <div class="story-card-overlay">
+                        <span class="story-card-name">${it.name}</span>
+                        <span class="story-card-cat">${LABELS[it.cat]}</span>
+                    </div>
+                    <span class="story-num">${String(i + 1).padStart(2,'0')}</span>`;
+                card.addEventListener('click', () => openLb(i));
+                storiesTrack.appendChild(card);
+            });
+        }
+
+        // --- Dots de navigation ---
+        function buildDots() {
+            if (!storiesDots) return;
+            storiesDots.innerHTML = '';
+            const total = items.length;
+            // Un dot tous les 10 items environ (max 15 dots)
+            const step = Math.max(1, Math.ceil(total / 15));
+            for (let i = 0; i < total; i += step) {
+                const dot = document.createElement('button');
+                dot.className = 'stories-dot';
+                dot.setAttribute('aria-label', `Aller à la publication ${i + 1}`);
+                dot.addEventListener('click', () => goToStory(i));
+                storiesDots.appendChild(dot);
+            }
+            updateDots();
+        }
+
+        function updateDots() {
+            if (!storiesDots) return;
+            const dots = storiesDots.querySelectorAll('.stories-dot');
+            const step = Math.max(1, Math.ceil(items.length / 15));
+            dots.forEach((d, i) => d.classList.toggle('active', storyIdx >= i * step && storyIdx < (i + 1) * step));
+        }
+
+        // --- Défilement de la piste ---
+        function getVisibleCount() {
+            const wrap = storiesTrack.parentElement;
+            if (!wrap) return 4;
+            return Math.max(1, Math.floor(wrap.clientWidth / CARD_WIDTH));
+        }
+
+        function slideToStory(i) {
+            storyIdx = Math.max(0, Math.min(i, items.length - 1));
+            const offset = storyIdx * CARD_WIDTH;
+            storiesTrack.style.transform = `translateX(-${offset}px)`;
+            updateDots();
+        }
+
+        // --- Barre de progression ---
+        function startProgress() {
+            if (storiesFill) {
+                cancelAnimationFrame(storyProgressReq);
+                storyProgressStart = performance.now();
+                function animProgress(now) {
+                    const elapsed = now - storyProgressStart;
+                    const pct = Math.min(elapsed / STORY_DURATION * 100, 100);
+                    storiesFill.style.width = pct + '%';
+                    if (pct < 100 && storyPlaying) {
+                        storyProgressReq = requestAnimationFrame(animProgress);
+                    }
+                }
+                storyProgressReq = requestAnimationFrame(animProgress);
+            }
+        }
+
+        function stopProgress() {
+            cancelAnimationFrame(storyProgressReq);
+            if (storiesFill) storiesFill.style.width = '0%';
+        }
+
+        // --- Play / Pause ---
+        function playStories() {
+            storyPlaying = true;
+            if (storiesPause) {
+                storiesPause.innerHTML = `<svg viewBox="0 0 24 24"><rect x="6" y="4" width="4" height="16" fill="currentColor"/><rect x="14" y="4" width="4" height="16" fill="currentColor"/></svg>`;
+                storiesPause.setAttribute('aria-label', 'Pause');
+            }
+            startProgress();
+            storyTimer = setTimeout(() => goToStory(storyIdx + 1), STORY_DURATION);
+        }
+
+        function pauseStories() {
+            storyPlaying = false;
+            clearTimeout(storyTimer);
+            cancelAnimationFrame(storyProgressReq);
+            if (storiesPause) {
+                storiesPause.innerHTML = `<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>`;
+                storiesPause.setAttribute('aria-label', 'Lecture');
+            }
+        }
+
+        function goToStory(i) {
+            clearTimeout(storyTimer);
+            cancelAnimationFrame(storyProgressReq);
+            const next = ((i % items.length) + items.length) % items.length;
+            slideToStory(next);
+            if (storyPlaying) playStories();
+            else stopProgress();
+        }
+
+        // --- Swipe tactile sur stories ---
+        let sx0 = null;
+        storiesTrack.addEventListener('touchstart', e => { sx0 = e.touches[0].clientX; pauseStories(); }, { passive: true });
+        storiesTrack.addEventListener('touchend', e => {
+            if (sx0 === null) return;
+            const dx = e.changedTouches[0].clientX - sx0;
+            if (Math.abs(dx) > 40) goToStory(storyIdx + (dx < 0 ? 1 : -1));
+            sx0 = null;
+            if (storyPlaying) playStories(); else stopProgress();
+        });
+
+        // --- Contrôles ---
+        if (storiesPause) storiesPause.addEventListener('click', () => storyPlaying ? pauseStories() : playStories());
+        if (storiesPrev)  storiesPrev.addEventListener('click', () => goToStory(storyIdx - 1));
+        if (storiesNext)  storiesNext.addEventListener('click', () => goToStory(storyIdx + 1));
+
+        // --- Pause automatique si l'utilisateur quitte la section ---
+        const storiesSection = document.getElementById('stories');
+        if (storiesSection) {
+            const visObs = new IntersectionObserver(entries => {
+                if (entries[0].isIntersecting) { if (storyPlaying) playStories(); }
+                else { clearTimeout(storyTimer); cancelAnimationFrame(storyProgressReq); }
+            }, { threshold: 0.1 });
+            visObs.observe(storiesSection);
+        }
+
+        // --- Init ---
+        buildStories();
+        buildDots();
+        slideToStory(0);
+        // Démarrage différé (après chargement)
+        setTimeout(() => playStories(), 800);
+    }
+
+    // =========================================================
+    //  Préchargement intelligent des images adjacentes
+    // =========================================================
     function preloadNearby(cIdx) {
         const next = current[(cIdx + 1) % current.length];
         const prev = current[(cIdx - 1 + current.length) % current.length];
@@ -268,7 +475,9 @@ document.addEventListener('DOMContentLoaded', () => {
         if (prev) { const i = new Image(); i.src = encodeURI('img/' + prev.src); }
     }
 
-    // ===== LIGHTBOX PREMIUM =====
+    // =========================================================
+    //  LIGHTBOX PREMIUM
+    // =========================================================
     function openLb(i) {
         idx = i;
         const it = current[idx];
@@ -302,7 +511,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.key === 'ArrowRight') step(1);
     });
 
-    // Swipe mobile
+    // Swipe mobile lightbox
     let x0 = null;
     lb.addEventListener('touchstart', e => { x0 = e.touches[0].clientX; }, { passive: true });
     lb.addEventListener('touchend', e => {
@@ -312,7 +521,9 @@ document.addEventListener('DOMContentLoaded', () => {
         x0 = null;
     });
 
-    // ===== TÉLÉCHARGER l'image =====
+    // =========================================================
+    //  TÉLÉCHARGER l'image
+    // =========================================================
     if (lbDownload) {
         lbDownload.addEventListener('click', async () => {
             const it = current[idx];
@@ -329,14 +540,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 URL.revokeObjectURL(url);
                 showToast('Image téléchargée avec succès !', '📥');
             } catch {
-                // Fallback : ouvrir dans un nouvel onglet
                 window.open('img/' + it.src, '_blank', 'noopener');
                 showToast('Image ouverte — longue pression pour sauvegarder', '📱');
             }
         });
     }
 
-    // ===== PARTAGER / METTRE EN LIGNE =====
+    // =========================================================
+    //  PARTAGER / METTRE EN LIGNE
+    // =========================================================
     if (lbShare) {
         lbShare.addEventListener('click', async () => {
             const it = current[idx];
@@ -369,7 +581,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // ===== MODAL SUGGESTION =====
+    // =========================================================
+    //  MODAL SUGGESTION
+    // =========================================================
     function buildSuggestionWa() {
         const it = current[idx];
         const prenom = document.getElementById('suggestName').value.trim() || 'un(e) client(e)';
@@ -404,7 +618,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Mise à jour du lien WA en temps réel dans la modal
     ['suggestName', 'suggestType', 'suggestMsg'].forEach(id => {
         const el = document.getElementById(id);
         if (el && sendSuggestion) el.addEventListener('input', () => { sendSuggestion.href = buildSuggestionWa(); });

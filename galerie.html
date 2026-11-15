@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Galerie | Sarkin Wanka Fashion Design</title>
-    <meta name="description" content="Découvrez les créations de Sarkin Wanka : tenues homme et femme, boubous prestige, tissus, jeans et pantalons. Commandez en un clic sur WhatsApp.">
+    <meta name="description" content="Découvrez les créations de Sarkin Wanka : tenues homme et femme, boubous prestige, tissus. Commandez en un clic sur WhatsApp.">
     <meta name="theme-color" content="#0b0b0c">
     <meta property="og:type" content="website">
     <meta property="og:title" content="Galerie | Sarkin Wanka Fashion Design">
-    <meta property="og:description" content="Découvrez les créations de Sarkin Wanka : tenues homme et femme, boubous prestige, tissus, jeans et pantalons. Commandez en un clic sur WhatsApp.">
-    <meta property="og:image" content="img/HOM 1.jpg">
+    <meta property="og:description" content="Découvrez les créations de Sarkin Wanka : tenues homme et femme, boubous prestige, tissus.">
+    <meta property="og:image" content="img/MODEL 1.jpg">
     <link rel="icon" type="image/jpeg" href="img/LOGO DE L'ATTELIE.jpg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -38,29 +38,122 @@
             </button>
         </nav>
     </header>
+
     <main id="main">
 
-        <section class="page-hero">
-            <div class="container">
-                <span class="eyebrow">Nos réalisations</span>
-                <h1 class="section-title">Notre <em>galerie</em></h1>
-                <p>Cliquez sur une photo pour l'agrandir, puis commandez le modèle qui vous plaît sur WhatsApp.</p>
-            </div>
-        </section>
-        <section class="section" style="padding-top:40px" id="galerie">
-            <div class="container">
-                <div class="filters" role="group" aria-label="Filtrer la galerie">
-                    <button class="chip active" data-filter="tous">Tous<small>106</small></button>
-                    <button class="chip" data-filter="homme">Homme<small>55</small></button>
-                    <button class="chip" data-filter="femme">Femme<small>3</small></button>
-                    <button class="chip" data-filter="prestige">Prestige<small>10</small></button>
-                    <button class="chip" data-filter="tissus">Tissus<small>34</small></button>
-                    <button class="chip" data-filter="atelier">Atelier<small>4</small></button>
+        <!-- ══════════════════════════════════════════════
+             HERO GALERIE EXPERT
+        ══════════════════════════════════════════════ -->
+        <section class="gallery-hero">
+            <div class="gallery-hero-bg"></div>
+            <div class="container gallery-hero-content">
+                <div class="gallery-hero-text">
+                    <span class="eyebrow">Collection exclusive</span>
+                    <h1>Notre <em>Galerie</em></h1>
+                    <p>Chaque pièce est une œuvre taillée à la perfection. Cliquez pour agrandir, télécharger ou commander directement au PDG.</p>
+                    <div class="gallery-hero-stats">
+                        <div class="gh-stat"><strong id="statTotal">106</strong><span>Créations</span></div>
+                        <div class="gh-stat"><strong>5</strong><span>Catégories</span></div>
+                        <div class="gh-stat"><strong>★ PDG</strong><span>Certifié</span></div>
+                    </div>
                 </div>
-                <div class="gallery-grid" id="galleryGrid"></div>
-                <div class="load-more"><button class="btn btn-ghost" id="loadMore" hidden>Voir plus de modèles</button></div>
+                <!-- Photo PDG / Référence Prestige 01 en vedette -->
+                <div class="gallery-hero-featured">
+                    <div class="featured-glow"></div>
+                    <div class="featured-card">
+                        <div class="featured-badge-top">
+                            <svg viewBox="0 0 24 24"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
+                            Référence PDG
+                        </div>
+                        <img src="img/MODEL 1.jpg" alt="Modèle Prestige 01 — Référence PDG Sarkin Wanka" class="featured-img">
+                        <div class="featured-overlay">
+                            <div>
+                                <p class="featured-label">PRESTIGE</p>
+                                <h3>Modèle Prestige 01</h3>
+                                <p class="featured-sub">La référence signature du PDG</p>
+                            </div>
+                            <a class="featured-cta" href="https://wa.me/22792622764?text=Bonjour%2C%20je%20suis%20int%C3%A9ress%C3%A9(e)%20par%20le%20Mod%C3%A8le%20Prestige%2001%20%E2%80%94%20la%20r%C3%A9f%C3%A9rence%20PDG%20Sarkin%20Wanka." target="_blank" rel="noopener">
+                                <svg viewBox="0 0 24 24"><path d="M12.04 2a9.9 9.9 0 0 0-8.5 14.9L2 22l5.25-1.38A9.9 9.9 0 1 0 12.04 2Zm5.8 14.07c-.25.7-1.45 1.34-2 1.4-.52.06-1.17.09-1.88-.12a17 17 0 0 1-1.7-.63c-3-1.3-4.95-4.32-5.1-4.52-.15-.2-1.2-1.6-1.2-3.05s.76-2.16 1.03-2.46c.27-.3.6-.37.8-.37h.57c.18 0 .43-.07.67.51.25.6.85 2.06.92 2.2.08.15.13.33.03.52-.1.2-.15.32-.3.5-.15.17-.31.38-.45.51-.15.15-.3.31-.13.6.17.3.78 1.28 1.67 2.07 1.15 1.02 2.12 1.34 2.42 1.49.3.15.47.12.65-.07.17-.2.75-.87.95-1.17.2-.3.4-.25.67-.15.27.1 1.73.82 2.03.97.3.15.5.22.57.35.08.12.08.72-.17 1.42Z" fill="currentColor"/></svg>
+                                Commander ce modèle
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
+
+        <!-- ══════════════════════════════════════════════
+             STORIES / DÉFILEMENT AUTO — Publications
+        ══════════════════════════════════════════════ -->
+        <section class="stories-section" id="stories">
+            <div class="container">
+                <div class="stories-header">
+                    <div>
+                        <span class="eyebrow">Publications</span>
+                        <h2 class="section-title">Toutes nos <em>créations</em></h2>
+                        <p>Défilement automatique — cliquez sur une publication pour l'agrandir</p>
+                    </div>
+                    <div class="stories-controls">
+                        <button class="stories-ctrl" id="storiesPause" aria-label="Pause">
+                            <svg viewBox="0 0 24 24"><rect x="6" y="4" width="4" height="16" fill="currentColor"/><rect x="14" y="4" width="4" height="16" fill="currentColor"/></svg>
+                        </button>
+                        <button class="stories-ctrl" id="storiesPrev" aria-label="Précédent">
+                            <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+                        </button>
+                        <button class="stories-ctrl" id="storiesNext" aria-label="Suivant">
+                            <svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+                        </button>
+                    </div>
+                </div>
+                <!-- Barre de progression -->
+                <div class="stories-progress-bar"><div class="stories-progress-fill" id="storiesProgressFill"></div></div>
+                <!-- Piste de stories -->
+                <div class="stories-track-wrap">
+                    <div class="stories-track" id="storiesTrack"></div>
+                </div>
+                <!-- Indicateur de position -->
+                <div class="stories-dots" id="storiesDots"></div>
+            </div>
+        </section>
+
+        <!-- ══════════════════════════════════════════════
+             GALERIE PRINCIPALE
+        ══════════════════════════════════════════════ -->
+        <section class="section" style="padding-top:50px" id="galerie">
+            <div class="container">
+
+                <!-- Filtres -->
+                <div class="filters" role="group" aria-label="Filtrer la galerie">
+                    <button class="chip active" data-filter="tous">Tous<small></small></button>
+                    <button class="chip" data-filter="homme">Homme<small></small></button>
+                    <button class="chip" data-filter="femme">Femme<small></small></button>
+                    <button class="chip" data-filter="prestige">Prestige<small></small></button>
+                    <button class="chip" data-filter="tissus">Tissus<small></small></button>
+                    <button class="chip" data-filter="atelier">Atelier<small></small></button>
+                </div>
+
+                <!-- Grille galerie -->
+                <div class="gallery-grid" id="galleryGrid"></div>
+
+                <!-- Sentinelle pour infinite scroll -->
+                <div id="infiniteScrollSentinel" style="height:1px;margin-top:40px;"></div>
+
+                <!-- Indicateur de chargement -->
+                <div class="gallery-loading" id="galleryLoading" hidden>
+                    <div class="loading-dots"><span></span><span></span><span></span></div>
+                    <p>Chargement des modèles…</p>
+                </div>
+                <div class="gallery-end" id="galleryEnd" hidden>
+                    <div class="gallery-end-line"></div>
+                    <span>✦ Fin de la collection ✦</span>
+                    <div class="gallery-end-line"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ══════════════════════════════════════════════
+             VIDÉOS
+        ══════════════════════════════════════════════ -->
         <section class="section alt" id="videos">
             <div class="container">
                 <div class="section-head reveal">
@@ -74,7 +167,9 @@
                 </div>
             </div>
         </section>
+
     </main>
+
     <footer>
         <div class="container footer-content">
             <div class="footer-info">
@@ -103,37 +198,28 @@
             <p>&copy; <span id="year">2026</span> Sarkin Wanka Fashion Design. Tous droits réservés.</p>
         </div>
     </footer>
-    <a class="wa-float" href="https://wa.me/22792622764" target="_blank" rel="noopener" aria-label="Discuter sur WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2a9.9 9.9 0 0 0-8.5 14.9L2 22l5.25-1.38A9.9 9.9 0 1 0 12.04 2Zm5.8 14.07c-.25.7-1.45 1.34-2 1.4-.52.06-1.17.09-1.88-.12a17 17 0 0 1-1.7-.63c-3-1.3-4.95-4.32-5.1-4.52-.15-.2-1.2-1.6-1.2-3.05s.76-2.16 1.03-2.46c.27-.3.6-.37.8-.37h.57c.18 0 .43-.07.67.51.25.6.85 2.06.92 2.2.08.15.13.33.03.52-.1.2-.15.32-.3.5-.15.17-.31.38-.45.51-.15.15-.3.31-.13.6.17.3.78 1.28 1.67 2.07 1.15 1.02 2.12 1.34 2.42 1.49.3.15.47.12.65-.07.17-.2.75-.87.95-1.17.2-.3.4-.25.67-.15.27.1 1.73.82 2.03.97.3.15.5.22.57.35.08.12.08.72-.17 1.42Z"/></svg></a>
-    <!-- ===== LIGHTBOX PREMIUM ===== -->
-    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Aperçu de l'image">
 
-        <!-- Badge Premium -->
+    <a class="wa-float" href="https://wa.me/22792622764" target="_blank" rel="noopener" aria-label="Discuter sur WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2a9.9 9.9 0 0 0-8.5 14.9L2 22l5.25-1.38A9.9 9.9 0 1 0 12.04 2Zm5.8 14.07c-.25.7-1.45 1.34-2 1.4-.52.06-1.17.09-1.88-.12a17 17 0 0 1-1.7-.63c-3-1.3-4.95-4.32-5.1-4.52-.15-.2-1.2-1.6-1.2-3.05s.76-2.16 1.03-2.46c.27-.3.6-.37.8-.37h.57c.18 0 .43-.07.67.51.25.6.85 2.06.92 2.2.08.15.13.33.03.52-.1.2-.15.32-.3.5-.15.17-.31.38-.45.51-.15.15-.3.31-.13.6.17.3.78 1.28 1.67 2.07 1.15 1.02 2.12 1.34 2.42 1.49.3.15.47.12.65-.07.17-.2.75-.87.95-1.17.2-.3.4-.25.67-.15.27.1 1.73.82 2.03.97.3.15.5.22.57.35.08.12.08.72-.17 1.42Z"/></svg></a>
+
+    <!-- ═══════ LIGHTBOX PREMIUM ═══════ -->
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Aperçu de l'image">
         <div class="lb-premium-badge">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
             Aperçu Premium
         </div>
-
-        <!-- Bouton fermer -->
         <button class="lb-btn lb-close" aria-label="Fermer">
             <svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
         </button>
-
-        <!-- Navigation -->
         <button class="lb-btn lb-prev" aria-label="Image précédente">
             <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
-
-        <!-- Zone image -->
         <div class="lb-image-wrap">
             <img class="lightbox-content" id="lightboxImg" alt="">
             <div class="lb-image-glow"></div>
         </div>
-
         <button class="lb-btn lb-next" aria-label="Image suivante">
             <svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
-
-        <!-- Panneau d'actions premium -->
         <div class="lb-panel">
             <div class="lb-info">
                 <div class="lb-title-wrap">
@@ -142,68 +228,33 @@
                 </div>
                 <span class="lb-count-pill" id="lbCount"></span>
             </div>
-
             <div class="lb-actions">
-
-                <!-- 1. Commander (WhatsApp au PDG) -->
-                <a class="lb-action-btn lb-action-order" id="lbWa" href="#" target="_blank" rel="noopener" aria-label="Commander ce modèle">
-                    <span class="lb-action-icon">
-                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2a9.9 9.9 0 0 0-8.5 14.9L2 22l5.25-1.38A9.9 9.9 0 1 0 12.04 2Zm5.8 14.07c-.25.7-1.45 1.34-2 1.4-.52.06-1.17.09-1.88-.12a17 17 0 0 1-1.7-.63c-3-1.3-4.95-4.32-5.1-4.52-.15-.2-1.2-1.6-1.2-3.05s.76-2.16 1.03-2.46c.27-.3.6-.37.8-.37h.57c.18 0 .43-.07.67.51.25.6.85 2.06.92 2.2.08.15.13.33.03.52-.1.2-.15.32-.3.5-.15.17-.31.38-.45.51-.15.15-.3.31-.13.6.17.3.78 1.28 1.67 2.07 1.15 1.02 2.12 1.34 2.42 1.49.3.15.47.12.65-.07.17-.2.75-.87.95-1.17.2-.3.4-.25.67-.15.27.1 1.73.82 2.03.97.3.15.5.22.57.35.08.12.08.72-.17 1.42Z"/></svg>
-                    </span>
-                    <span class="lb-action-label">
-                        <strong>Commander</strong>
-                        <small>Message au PDG via WhatsApp</small>
-                    </span>
+                <a class="lb-action-btn lb-action-order" id="lbWa" href="#" target="_blank" rel="noopener">
+                    <span class="lb-action-icon"><svg viewBox="0 0 24 24"><path d="M12.04 2a9.9 9.9 0 0 0-8.5 14.9L2 22l5.25-1.38A9.9 9.9 0 1 0 12.04 2Zm5.8 14.07c-.25.7-1.45 1.34-2 1.4-.52.06-1.17.09-1.88-.12a17 17 0 0 1-1.7-.63c-3-1.3-4.95-4.32-5.1-4.52-.15-.2-1.2-1.6-1.2-3.05s.76-2.16 1.03-2.46c.27-.3.6-.37.8-.37h.57c.18 0 .43-.07.67.51.25.6.85 2.06.92 2.2.08.15.13.33.03.52-.1.2-.15.32-.3.5-.15.17-.31.38-.45.51-.15.15-.3.31-.13.6.17.3.78 1.28 1.67 2.07 1.15 1.02 2.12 1.34 2.42 1.49.3.15.47.12.65-.07.17-.2.75-.87.95-1.17.2-.3.4-.25.67-.15.27.1 1.73.82 2.03.97.3.15.5.22.57.35.08.12.08.72-.17 1.42Z" fill="currentColor"/></svg></span>
+                    <span class="lb-action-label"><strong>Commander</strong><small>Message au PDG via WhatsApp</small></span>
                 </a>
-
-                <!-- 2. Télécharger -->
-                <button class="lb-action-btn lb-action-download" id="lbDownload" aria-label="Télécharger l'image">
-                    <span class="lb-action-icon">
-                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16l-4-4h2.5V4h3v8H16l-4 4zm-7 2h14v2H5v-2z" fill="currentColor"/></svg>
-                    </span>
-                    <span class="lb-action-label">
-                        <strong>Télécharger</strong>
-                        <small>Sauvegarder sur votre appareil</small>
-                    </span>
+                <button class="lb-action-btn lb-action-download" id="lbDownload">
+                    <span class="lb-action-icon"><svg viewBox="0 0 24 24"><path d="M12 16l-4-4h2.5V4h3v8H16l-4 4zm-7 2h14v2H5v-2z" fill="currentColor"/></svg></span>
+                    <span class="lb-action-label"><strong>Télécharger</strong><small>Sauvegarder sur votre appareil</small></span>
                 </button>
-
-                <!-- 3. Envoyer une suggestion -->
-                <button class="lb-action-btn lb-action-suggest" id="lbSuggest" aria-label="Envoyer une suggestion">
-                    <span class="lb-action-icon">
-                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-7 9h-2V5h2v6zm0 4h-2v-2h2v2z" fill="currentColor"/></svg>
-                    </span>
-                    <span class="lb-action-label">
-                        <strong>Suggestion</strong>
-                        <small>Envoyer un avis au PDG</small>
-                    </span>
+                <button class="lb-action-btn lb-action-suggest" id="lbSuggest">
+                    <span class="lb-action-icon"><svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-7 9h-2V5h2v6zm0 4h-2v-2h2v2z" fill="currentColor"/></svg></span>
+                    <span class="lb-action-label"><strong>Suggestion</strong><small>Envoyer un avis au PDG</small></span>
                 </button>
-
-                <!-- 4. Partager / Mettre en ligne -->
-                <button class="lb-action-btn lb-action-share" id="lbShare" aria-label="Partager ce modèle">
-                    <span class="lb-action-icon">
-                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92c0-1.61-1.31-2.92-2.92-2.92z" fill="currentColor"/></svg>
-                    </span>
-                    <span class="lb-action-label">
-                        <strong>Partager</strong>
-                        <small>Mettre en ligne & partager</small>
-                    </span>
+                <button class="lb-action-btn lb-action-share" id="lbShare">
+                    <span class="lb-action-icon"><svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92c0-1.61-1.31-2.92-2.92-2.92z" fill="currentColor"/></svg></span>
+                    <span class="lb-action-label"><strong>Partager</strong><small>Mettre en ligne &amp; partager</small></span>
                 </button>
-
             </div>
         </div>
     </div>
 
-    <!-- ===== MODAL SUGGESTION ===== -->
+    <!-- ═══════ MODAL SUGGESTION ═══════ -->
     <div class="suggestion-modal" id="suggestionModal" role="dialog" aria-modal="true" aria-label="Envoyer une suggestion">
         <div class="suggestion-card">
             <div class="suggestion-header">
-                <div class="suggestion-icon">
-                    <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z" fill="currentColor"/></svg>
-                </div>
-                <div>
-                    <h3>Votre suggestion</h3>
-                    <p>Envoyez votre avis directement au PDG</p>
-                </div>
+                <div class="suggestion-icon"><svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z" fill="currentColor"/></svg></div>
+                <div><h3>Votre suggestion</h3><p>Envoyez votre avis directement au PDG</p></div>
                 <button class="suggestion-close" id="closeSuggestion" aria-label="Fermer">&times;</button>
             </div>
             <div class="suggestion-preview" id="suggestionPreview">
@@ -239,7 +290,6 @@
         </div>
     </div>
 
-    <!-- ===== TOAST NOTIFICATION ===== -->
     <div class="lb-toast" id="lbToast" aria-live="polite"></div>
     <script src="script.js"></script>
 </body>
